@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>DIST by dleelab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">DIST</h1>
+      <h2 class="project-tagline">direct imputation of summary statistics for unmeasured SNPs</h2>
+      <a href="https://github.com/dleelab/dist" class="btn">View on GitHub</a>
+      <a href="https://github.com/dleelab/dist/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/dleelab/dist/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h2>
+<a id="whats-new" class="anchor" href="#whats-new" aria-hidden="true"><span class="octicon octicon-link"></span></a>What's New?</h2>
+
+<p><strong>[07/14/2015]</strong> Recently we developed a novel method/software for directly imputing summary statistics for unmeasured SNPs from mixed ethnicity cohorts (<a href="https://dleelab.github.io/distmix">DISTMIX</a>). DISTMIX extends DIST capabilities to multi-ethnic cohorts analysis while 1) maintaining imputation accuracy and speed, 2) not requiring genetic data and 3) being applicable to pedigree data. A pre-compiled executable for DISTMIX (v0.2.0) built under Linux is available now!</p>
+
+<h2>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h2>
+
+<p>"DIST is a software program for directly imputing the normally distributed summary statistics of unmeasured SNPs in a GWAS/meta-analysis without first imputing subject level genotypes. This direct imputation of the normally distributed statistics (Z-scores) is achieved by employing the conditional expectation formula for multivariate normal variates and using the correlation structure from a relevant reference population (e.g., 1000 Genomes data set). When compared to genotype imputation methods, DIST i) requires only a fraction of their computational resources, ii) has comparable imputation accuracy for independent subjects and iii) is readily applicable to the imputation of association statistics coming from large pedigree data. Thus, DIST is useful for a fast imputation of summary results for i) studies of unrelated subjects which a) do not provide subject level genotypes or b) have a large size and ii) family association studies. DIST is written in C++ and can be easily used under Linux, Windows, MacOS etc." </p>
+
+<h2>
+<a id="citing-dist" class="anchor" href="#citing-dist" aria-hidden="true"><span class="octicon octicon-link"></span></a>Citing DIST</h2>
+
+<p><strong><em>DIST: Direct imputation of summary statistics for unmeasured SNPs</em></strong>,  Donghyung Lee; T. Bernard Bigdeli; Brien Riley; Ayman Fanous; Silviu-Alin Bacanu; Bioinformatics (2013) 29 (22): 2925-2927. <a href="http://bioinformatics.oxfordjournals.org/content/29/22/2925.full">doi: 10.1093/bioinformatics/btt500</a></p>
+
+<h2>
+<a id="download-dist" class="anchor" href="#download-dist" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download DIST</h2>
+
+<p>The current release (Version 1.0.0) of DIST is for a Linux user. The pre-compiled executables for other operating systems (e.g.,  Windows, MacOS) will be available soon. The latest source codes of DISTMIX are available upon request (dustorm_at_gmail_dot_com).</p>
+
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Direct download link</strong></th>
+<th align="left"><strong>Version</strong></th>
+<th align="left"><strong>Release Date</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://drive.google.com/file/d/0By9SJLeBoduFa3pYS2hHUS1XQU0/view?usp=sharing">DIST for a Linux user</a></td>
+<td align="left">v1.0.0</td>
+<td align="left">11/05/2013</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="download-reference-panels" class="anchor" href="#download-reference-panels" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download Reference Panels</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Direct download link</strong></th>
+<th align="left"><strong>NCBI build</strong></th>
+<th align="left"><strong>Release Date</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://drive.google.com/file/d/0By9SJLeBoduFTkM3NVBpbjB5ckU/view?usp=sharing">1000 Genomes Phase1 Release3 European</a></td>
+<td align="left">build 37 (hg19)</td>
+<td align="left">Nov. 23 2010</td>
+</tr>
+<tr>
+<td align="left"><a href="">UK10K</a></td>
+<td align="left">build 37 (hg19)</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="dist-input-file-format" class="anchor" href="#dist-input-file-format" aria-hidden="true"><span class="octicon octicon-link"></span></a>DIST input file format</h2>
+
+<p>DIST takes as input a plain text file with rows and columns denoting SNPs and variables, respectively. The file contains six columns: 1) rsid, 2) chromosome number, 3) base pair position, 4) reference allele, 5) alternative allele and 6) normally distributed GWAS/meta-analysis summary statistic (Z-score). DIST does not require the input data to be sorted in ascending order by chromosome number and base pair position or rsid. The first line of the input file should be column names/headers. Data entries on each line should be separated by white space. Here is a sample DIST input file, with 5 SNPs:</p>
+
+<pre><code>rsid        chr  bp         a1  a2   z
+
+rs1000109   9    117908733  C   T   -0.714464
+
+rs10001109  4    44904653   C   T    0.721919
+
+rs1000112   22   28273339   C   G   -0.583666
+
+rs10001127  4    130547376  T   C    0.069329
+
+rs1000113   5    150240076  T   C   -1.447288
+</code></pre>
+
+<p><strong>Note:</strong> If the input data comes a different genome assembly (e.g. NCBI build 36 (hg18)) than NCBI build 37 (hg19), it needs to be converted to NCBI build 37 (hg19) using a software, called liftOver, from UCSC.    </p>
+
+<h2>
+<a id="dist-output-file-format" class="anchor" href="#dist-output-file-format" aria-hidden="true"><span class="octicon octicon-link"></span></a>DIST output file format</h2>
+
+<p>The DIST output file has ten columns: 1) rsid, 2) chromosome number, 3) base pair position, 4) reference allele, 5) alternative allele, 6) reference allele frequency, 7) Z-score, 8) DIST imputation information, 9) p-value and 10) type. The first line of the output file is column names/headers. The tenth column, type, contains 0, 1 or 2. 0 means the corresponding SNP is unmeasured (thus, imputed) one  but has been genotyped in the reference panel; 1 means the corresponding SNP is measured one and has been genotyped in the reference panel; 2 means the corresponding SNP is measured one but has not been genotyped in the reference panel. Here is a sample DIST output file, with 5 SNPs:</p>
+
+<pre><code>rsid        chr  bp     a1  a2  af1         z           info        pval      type
+
+rs74970982  1    61442  G   A   0.951444    0.00678502  0.252236    0.994586  0
+
+rs62637820  1    61920  A   G   0.0629921  -0.0502051   0.490445    0.959959  0
+
+rs76735897  1    61987  G   A   0.440945   -0.0614578   0.528252    0.950995  0
+
+rs77573425  1    61989  C   G   0.458005   -0.0552563   1           0.955934  1
+
+rs28599927  1    62271  G   A   NA         -0.0314447   1           0.974915  2
+</code></pre>
+
+<h2>
+<a id="options" class="anchor" href="#options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Options</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left"><strong>Option</strong></th>
+<th align="left"><strong>Short Flag</strong></th>
+<th align="left"><strong>Parameter</strong></th>
+<th align="left"><strong>Default</strong></th>
+<th align="left"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">--version</td>
+<td align="left">-v</td>
+<td align="left">none</td>
+<td align="left">none</td>
+<td align="left">Prints version information.</td>
+</tr>
+<tr>
+<td align="left">--help</td>
+<td align="left">-h</td>
+<td align="left">none</td>
+<td align="left">none</td>
+<td align="left">Outputs a full description of all DIST options.</td>
+</tr>
+<tr>
+<td align="left">--config</td>
+<td align="left">-f</td>
+<td align="left">filename</td>
+<td align="left">none</td>
+<td align="left">The configuration filename. DIST reads user-defined settings in this file at startup.</td>
+</tr>
+<tr>
+<td align="left">--reference</td>
+<td align="left">-r</td>
+<td align="left">filename</td>
+<td align="left">none</td>
+<td align="left">The filename of the reference data set.</td>
+</tr>
+<tr>
+<td align="left">--output</td>
+<td align="left">-o</td>
+<td align="left">filename</td>
+<td align="left">out.dst</td>
+<td align="left">The output filename. This file has a header and is space-delimited. Rows correspond to SNPs and columns to variables.</td>
+</tr>
+<tr>
+<td align="left">--chromosome</td>
+<td align="left">-c</td>
+<td align="left">positive integer between 1 and 22</td>
+<td align="left">none</td>
+<td align="left">The chromosome number.</td>
+</tr>
+<tr>
+<td align="left">--num-pre</td>
+<td align="left">-n</td>
+<td align="left">positive integer</td>
+<td align="left">1</td>
+<td align="left">The number of measured SNPs to be contained in the prediction window.</td>
+</tr>
+<tr>
+<td align="left">--num-ext</td>
+<td align="left">-m</td>
+<td align="left">positive integer</td>
+<td align="left">50</td>
+<td align="left">The number of measured SNPs included in the extended window to the left and right of the prediction window.</td>
+</tr>
+<tr>
+<td align="left">--info-cutoff</td>
+<td align="left">-i</td>
+<td align="left">subunitary decimal</td>
+<td align="left">0.99</td>
+<td align="left">The information cutoff value for numerical integration. If information of an imputed SNP falls below it, DIST computes the imputed p-value by using the numerical integration method.</td>
+</tr>
+<tr>
+<td align="left">--absz-cutoff</td>
+<td align="left">-z</td>
+<td align="left">decimal</td>
+<td align="left">3.0</td>
+<td align="left">The absolute value for z-score cutoff for numerical integration. If the absolute value of the imputed Z-score rises above this value and the corresponding imputation information falls below a user-defined cutoff value for imputation information (0.99 by default), DIST computes the imputed p-value by using the numerical integration method.</td>
+</tr>
+<tr>
+<td align="left">--num-quant</td>
+<td align="left">-q</td>
+<td align="left">positive integer</td>
+<td align="left">1,000</td>
+<td align="left">The number of equally distant quantiles used for the numerical integration of the expected p-value for imputed statistics.</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Note:</strong> Results from our simulation studies show that DIST achieves the highest accuracy when <strong>num-pre = 1</strong> and <strong>num-ext = 50</strong>. Thus, it is highly recommended to use the default setting for both options. </p>
+
+<h2>
+<a id="getting-started-with-examples" class="anchor" href="#getting-started-with-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting started with examples</h2>
+
+<p>The users are required to download a pre-compiled DIST executable (dist) and a sample input file (sample_input_chr22) from the <strong>Download DIST</strong> section above. A tgz-compressed directory with 1000 Genomes European or UK10K reference panel datasets also should be downloaded from <strong>Download Reference Panels</strong> section above and can be uncompressed using <strong>tar</strong> with the <strong>-zxvf</strong> options. Let’s assume that the reference panel datasets named as "chr#<code>_</code>foo.gz" are stored in a directory /path/to/reference/.</p>
+
+<p><strong>Scenario 1:</strong> We want to impute unmeasured SNPs on chromosome 22 in the sample input file and store all imputation results in a text file named as "sample_output_chr22".</p>
+
+<div class="highlight highlight-shell"><pre><span class="pl-k">&gt;&gt;</span> ./dist -c 22 sample_input_chr22 -o sample_output_chr22 -r /path/to/reference/chr22_foo.gz</pre></div>
+
+<p><strong>Scenario 2:</strong> Here, we want to impute unmeasured SNPs on chromosomes 11 in a GWAS/meta-analysis (assume the input file name is "allchr_diabetes_hg19".) and store the imputation results in a text file named as "chr11_diabetes_hg19_imputed". We want to set <strong>the number of measured SNPs in the prediction window (num-pre)</strong> to be 3 and <strong>the number of measured SNPs in each side region of the extended window (num-ext)</strong> to be 30.</p>
+
+<div class="highlight highlight-shell"><pre><span class="pl-k">&gt;&gt;</span> ./dist -c 11 -n 3 -m 30 -o chr11_diabetes_hg19_imputed -r /path/to/reference/chr11_foo.gz allchr_diabetes_hg19</pre></div>
+
+<p><strong>Scenario 3:</strong> Let's assume that we use an input file (wtccc_scz) stored in a directory (/path/to/input/) and set <strong>num-pre (n)</strong> to be 2, <strong>num-ext (m)</strong> to be 60, <strong>info-cutoff (i)</strong> to be 0.90, <strong>absz-cutoff (z)</strong> to be 3.5 and <strong>num-quant (q)</strong> to be 5000 and keep using these settings. To run DIST with these settings, we should specify these options on the command line as follows:</p>
+
+<div class="highlight highlight-shell"><pre><span class="pl-k">&gt;&gt;</span> ./dist -n 2 -m 60 -i 0.90 -z 3.5 -q 5000 /path/to/input/wtccc_scz ...</pre></div>
+
+<p>Like the above example, entering frequently used options on the command line every time we run DIST is an irksome job. We can avoid this by specifying the options in a DIST configuration file, which is read by DIST at start-up. Here is a sample configuration file  containing all the options: </p>
+
+<div class="highlight highlight-shell"><pre>num-pre = 2
+num-ext = 60
+info-cutoff = 0.90
+absz-cutoff = 3.5
+num-quant = 5000
+input-file = /path/to/input/wtccc_scz</pre></div>
+
+<p>We named the above configuration file as "config_wtccc.dst" stored it in /path/to/config/. We can run DIST with the configuration file as follows:</p>
+
+<div class="highlight highlight-shell"><pre><span class="pl-k">&gt;&gt;</span> ./dist -f /path/to/config/config_wtccc.dst ...</pre></div>
+
+<p>If we want to impute missing SNPs on chromosome 7 in the input data file, we just specify the chromosome number option (c) to be 7:</p>
+
+<div class="highlight highlight-shell"><pre><span class="pl-k">&gt;&gt;</span> ./dist -f /path/to/config/config_wtccc.dst -c 7 -r /path/to/reference/chr7_foo.gz -o /path/to/output/chr7_foo_imputed</pre></div>
+
+<p>To impute unmeasured SNPs on all autosomes (chromosomes 1-22) in the above input file at once, we can use a shell script (e.g. bash):</p>
+
+<div class="highlight highlight-shell"><pre><span class="pl-c">#!/bin/bash</span>
+<span class="pl-k">for</span> <span class="pl-smi">i</span> <span class="pl-k">in</span> {1..22}
+<span class="pl-k">do</span>
+./dist -f /path/to/config/config_wtccc.dst -c <span class="pl-smi">$i</span> -r /path/to/reference/chr<span class="pl-smi">$i_foo</span>.gz -o /path/to/output/chr<span class="pl-smi">$i_foo_imputed</span>    
+<span class="pl-k">done</span></pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/dleelab/dist">DIST</a> is maintained by <a href="https://github.com/dleelab">dleelab</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
