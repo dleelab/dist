@@ -9,7 +9,7 @@
 
 ##Citing DIST
 
-**_DIST: Direct imputation of summary statistics for unmeasured SNPs_**,  Donghyung Lee; T. Bernard Bigdeli; Brien Riley; Ayman Fanous; Silviu-Alin Bacanu; Bioinformatics (2013) 29 (22): 2925-2927. [doi: 10.1093/bioinformatics/btt500](http://bioinformatics.oxfordjournals.org/content/29/22/2925.full)
+**_DIST: Direct imputation of summary statistics for unmeasured SNPs_**,  Donghyung Lee; T. Bernard Bigdeli; Brien Riley; Ayman Fanous; Silviu-Alin Bacanu; **_Bioinformatics_** (2013) 29 (22): 2925-2927. [doi: 10.1093/bioinformatics/btt500](http://bioinformatics.oxfordjournals.org/content/29/22/2925.full)
 
 ##Download DIST
 
