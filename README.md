@@ -1,5 +1,3 @@
-####Last Modified: 07/14/2015
-
 ##What's New?
 **[07/14/2015]** Recently we developed a novel method/software for directly imputing summary statistics for unmeasured SNPs from mixed ethnicity cohorts ([DISTMIX](https://dleelab.github.io/distmix)). DISTMIX extends DIST capabilities to multi-ethnic cohorts analysis while 1) maintaining imputation accuracy and speed, 2) not requiring genetic data and 3) being applicable to pedigree data. A pre-compiled executable for DISTMIX (v0.2.0) built under Linux is available now!
 
