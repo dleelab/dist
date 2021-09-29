@@ -21,8 +21,8 @@ The current release (Version 1.0.0) of DIST is for a Linux user. The pre-compile
 
 |**Direct download link** | **NCBI build** | **Release Date** |
 | :--- | :--- | :--- |
-|[1000 Genomes Phase1 Release3 European](https://drive.google.com/file/d/0By9SJLeBoduFTkM3NVBpbjB5ckU/view?usp=sharing) | build 37 (hg19) | Nov. 23 2010 |
-| [UK10K]() | build 37 (hg19) | |
+|[1000 Genomes Phase1 Release3 European](https://drive.google.com/file/d/0By9SJLeBoduFTkM3NVBpbjB5ckU/view?usp=sharing&resourcekey=0-q3TzfAsgU3IczIRZvfkAVQ) | build 37 (hg19) | Nov. 23 2010 |
+| [UK10K](https://drive.google.com/file/d/0By9SJLeBoduFeUpubnBkLUsta2M/view?usp=sharing&resourcekey=0-JelHA0ucY68zWerc42SAfg) | build 37 (hg19) | |
 
 
 ##DIST input file format
